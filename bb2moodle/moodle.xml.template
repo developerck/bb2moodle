@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MOODLE_BACKUP>
+  <INFO>
+    <NAME>empty.zip</NAME>
+    <MOODLE_VERSION>2007101580</MOODLE_VERSION>
+    <MOODLE_RELEASE>1.9.8 (Build: 20100325)</MOODLE_RELEASE>
+    <BACKUP_VERSION>2009111300</BACKUP_VERSION>
+    <BACKUP_RELEASE>1.9.7</BACKUP_RELEASE>
+    <DATE>{{ course.timestamp }}</DATE>
+    <ORIGINAL_WWWROOT/>
+    <ORIGINAL_SITE_IDENTIFIER_HASH/>
+    <ZIP_METHOD>internal</ZIP_METHOD>
+    <DETAILS>
+      {% if course.quizzes %}
+      <MOD>
+          <NAME>quiz</NAME>
+          <INCLUDED>true</INCLUDED>
+          <USERINFO>false</USERINFO>
+          <INSTANCES>
+            {% for quiz in course.quizzes %}
+            <INSTANCE>
+                <ID>{{ quiz.id }}</ID>
+                <NAME>{{ quiz.name }}</NAME>
+                <INCLUDED>true</INCLUDED>
+                <USERINFO>false</USERINFO>
+            </INSTANCE>
+            {% endfor %}
+          </INSTANCES>
+      </MOD>
+      {% endif %}
+      {% if course.forums %}
+      <MOD>
+        <NAME>forum</NAME>
+        <INCLUDED>true</INCLUDED>
+        <USERINFO>false</USERINFO>
+        <INSTANCES>
+            {% for forum in course.forums %}
+            <INSTANCE>
+                <ID>{{ forum.id }}</ID>
+                <NAME>{{ forum.name }}</NAME>
+                <INCLUDED>true</INCLUDED>
+                <USERINFO>false</USERINFO>
+            </INSTANCE>
+            {% endfor %}
+        </INSTANCES>
+      </MOD>
+      {% endif %}
+      {% if course.labels %}
+      <MOD>
+        <NAME>label</NAME>
+        <INCLUDED>true</INCLUDED>
+        <USERINFO>false</USERINFO>
+        <INSTANCES>
+          {% for label in course.labels %}
+          <INSTANCE>
+          <ID>{{ label.id }}</ID>
+          <NAME>{{ label.name }}</NAME>
+          <INCLUDED>true</INCLUDED>
+          <USERINFO>false</USERINFO>
+          </INSTANCE>
+          {% endfor %}
+        </INSTANCES>
+      </MOD>
+      {% endif %}
+      {% if course.resources %}
+      <MOD>
+        <NAME>resource</NAME>
+        <INCLUDED>true</INCLUDED>
+        <USERINFO>false</USERINFO>
+        <INSTANCES>
+          {% for resource in course.resources %}
+          <INSTANCE>
+            <ID>{{ resource.id }}</ID>
+            <NAME>{{ resource.name }}</NAME>
+            <INCLUDED>true</INCLUDED>
+            <USERINFO>false</USERINFO>
+          </INSTANCE>
+          {% endfor %}
+        </INSTANCES>
+      </MOD>
+      {% endif %}
+      <METACOURSE>false</METACOURSE>
+      <USERS>none</USERS>
+      <LOGS>false</LOGS>
+      <USERFILES>false</USERFILES>
+      <COURSEFILES>true</COURSEFILES>
+      <SITEFILES>false</SITEFILES>
+      <GRADEBOOKHISTORIES>false</GRADEBOOKHISTORIES>
+      <MESSAGES>false</MESSAGES>
+      <BLOGS>false</BLOGS>
+      <BLOCKFORMAT>instances</BLOCKFORMAT>
+    </DETAILS>
+  </INFO>
+  <ROLES>
+  </ROLES>
+  <COURSE>
+    <HEADER>
+      <ID>2</ID>
+      <CATEGORY>
+        <ID>1</ID>
+        <NAME>Miscellaneous</NAME>
+      </CATEGORY>
+      <PASSWORD/>
+      <FULLNAME>{{ course.fullname }}</FULLNAME>
+      <SHORTNAME>{{ course.shortname }}</SHORTNAME>
+      <IDNUMBER/>
+      <SUMMARY/>
+      <FORMAT>topics</FORMAT>
+      <SHOWGRADES>1</SHOWGRADES>
+      <NEWSITEMS>5</NEWSITEMS>
+      <TEACHER>Teacher</TEACHER>
+      <TEACHERS>Teachers</TEACHERS>
+      <STUDENT>Student</STUDENT>
+      <STUDENTS>Students</STUDENTS>
+      <GUEST>0</GUEST>
+      <STARTDATE>1276232400</STARTDATE>
+      <NUMSECTIONS>{{ course.sections|length - 1 }}</NUMSECTIONS>
+      <MAXBYTES>2097152</MAXBYTES>
+      <SHOWREPORTS>0</SHOWREPORTS>
+      <GROUPMODE>0</GROUPMODE>
+      <GROUPMODEFORCE>0</GROUPMODEFORCE>
+      <DEFAULTGROUPINGID>0</DEFAULTGROUPINGID>
+      <LANG/>
+      <THEME/>
+      <COST/>
+      <CURRENCY>USD</CURRENCY>
+      <MARKER>0</MARKER>
+      <VISIBLE>1</VISIBLE>
+      <HIDDENSECTIONS>0</HIDDENSECTIONS>
+      <TIMECREATED>1276222307</TIMECREATED>
+      <TIMEMODIFIED>1276222307</TIMEMODIFIED>
+      <METACOURSE>0</METACOURSE>
+      <EXPIRENOTIFY>0</EXPIRENOTIFY>
+      <NOTIFYSTUDENTS>0</NOTIFYSTUDENTS>
+      <EXPIRYTHRESHOLD>864000</EXPIRYTHRESHOLD>
+      <ENROLLABLE>0</ENROLLABLE>
+      <ENROLSTARTDATE>0</ENROLSTARTDATE>
+      <ENROLENDDATE>0</ENROLENDDATE>
+      <ENROLPERIOD>0</ENROLPERIOD>
+      <ROLES_OVERRIDES>
+      </ROLES_OVERRIDES>
+      <ROLES_ASSIGNMENTS>
+      </ROLES_ASSIGNMENTS>
+    </HEADER>
+    <BLOCKS/>
+    <SECTIONS>
+      {% for section in course.sections %}
+      <SECTION>
+        <ID>{{ section.id}}</ID>
+        <NUMBER>{{ section.number }}</NUMBER>
+        <SUMMARY>{{ section.summary }}</SUMMARY>
+        <VISIBLE>{{ section.visible }}</VISIBLE>
+        <MODS>
+        {% for mod in section.mods %}
+          <MOD>
+            <ID>{{ mod.section_id }}</ID>
+            <TYPE>{{ mod.type }}</TYPE>
+            <INSTANCE>{{ mod.id }}</INSTANCE>
+            <ADDED>{{ course.timestamp }}</ADDED>
+            <SCORE>0</SCORE>
+            <INDENT>{{ mod.indent }}</INDENT>
+            <VISIBLE>1</VISIBLE>
+            <GROUPMODE>0</GROUPMODE>
+            <GROUPINGID>0</GROUPINGID>
+            <GROUPMEMBERSONLY>0</GROUPMEMBERSONLY>
+            <IDNUMBER></IDNUMBER>
+            <ROLES_OVERRIDES/>
+            <ROLES_ASSIGNMENTS/>
+          </MOD>
+        {% endfor %}
+        </MODS>
+      </SECTION>
+      {% endfor %}
+    </SECTIONS>
+    {% if course.has_questions %}
+    <QUESTION_CATEGORIES>
+      <QUESTION_CATEGORY>
+        <ID>{{ course.quiz_category_id }}</ID>
+        <NAME>Questions for {{ course.shortname }}</NAME>
+        <INFO>All quiz questions for {{ course.shortname }}</INFO>
+        <CONTEXT>
+          <LEVEL>course</LEVEL>
+        </CONTEXT>
+        <STAMP>{{ course.quiz_category_stamp }}</STAMP>
+        <PARENT>0</PARENT>
+        <SORTORDER>999</SORTORDER>
+      </QUESTION_CATEGORY>
+      {% for quiz in course.quizzes %}
+      <QUESTION_CATEGORY>
+        <ID>{{ quiz.category_id }}</ID>
+        <NAME>Default for {{ quiz.name }}</NAME>
+        <INFO>The default category for questions shared in context '{{ quiz.name }}'.</INFO>
+        <CONTEXT>
+          <LEVEL>module</LEVEL>
+          <INSTANCE>{{ quiz.section_id }}</INSTANCE>
+        </CONTEXT>
+        <STAMP>{{ quiz.stamp }}</STAMP>
+        <PARENT>0</PARENT>
+        <SORTORDER>999</SORTORDER>
+        {% if quiz.questions %}
+        <QUESTIONS>
+          {% for essay_question in course.questions.essay %}
+            {% if essay_question.res_num == quiz.res_num %}
+          <QUESTION>
+            <ID>{{ essay_question.id }}</ID>
+            <PARENT>0</PARENT>
+            <NAME>{{ essay_question.name }}</NAME>
+            <QUESTIONTEXT>{{ essay_question.text }}</QUESTIONTEXT>
+            <QUESTIONTEXTFORMAT>1</QUESTIONTEXTFORMAT>
+            <IMAGE>{{ essay_question.image }}</IMAGE>
+            <GENERALFEEDBACK></GENERALFEEDBACK>
+            <DEFAULTGRADE>1</DEFAULTGRADE>
+            <PENALTY>0</PENALTY>
+            <QTYPE>essay</QTYPE>
+            <LENGTH>1</LENGTH>
+            <STAMP>{{ essay_question.stamp }}</STAMP>
+            <VERSION>{{ essay_question.stamp }}</VERSION>
+            <HIDDEN>0</HIDDEN>
+            <TIMECREATED>{{ course.timestamp }}</TIMECREATED>
+            <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+            <ANSWERS>
+              <ANSWER>
+                <ID>{{ essay_question.answer_id }}</ID>
+                <ANSWER_TEXT>{{ essay_question.feedback }}</ANSWER_TEXT>
+                <FRACTION>0</FRACTION>
+                <FEEDBACK>{{ essay_question.feedback }}</FEEDBACK>
+              </ANSWER>
+            </ANSWERS>
+          </QUESTION>
+            {% endif %}
+          {% endfor %}
+          {% for truefalse_question in course.questions.truefalse %}
+            {% if truefalse_question.res_num == quiz.res_num %}
+          <QUESTION>
+            <ID>{{ truefalse_question.id }}</ID>
+            <PARENT>0</PARENT>
+            <NAME>{{ truefalse_question.name }}</NAME>
+            <QUESTIONTEXT>{{ truefalse_question.text }}</QUESTIONTEXT>
+            <QUESTIONTEXTFORMAT>1</QUESTIONTEXTFORMAT>
+            <IMAGE>{{ truefalse_question.image }}</IMAGE>
+            <GENERALFEEDBACK>{{ truefalse_question.general_feedback }}</GENERALFEEDBACK>
+            <DEFAULTGRADE>1</DEFAULTGRADE>
+            <PENALTY>0</PENALTY>
+            <QTYPE>truefalse</QTYPE>
+            <LENGTH>1</LENGTH>
+            <STAMP>{{ truefalse_question.stamp }}</STAMP>
+            <VERSION>{{ truefalse_question.stamp }}</VERSION>
+            <HIDDEN>0</HIDDEN>
+            <TIMECREATED>{{ course.timestamp }}</TIMECREATED>
+            <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+            <TRUEFALSE>
+                <TRUEANSWER>{{ truefalse_question.true_answer_id }}</TRUEANSWER>
+                <FALSEANSWER>{{ truefalse_question.false_answer_id }}</FALSEANSWER>
+            </TRUEFALSE>
+            <ANSWERS>
+              <ANSWER>
+                <ID>{{ truefalse_question.true_answer_id }}</ID>
+                <ANSWER_TEXT>True</ANSWER_TEXT>
+                <FRACTION>{{ truefalse_question.true_points }}</FRACTION>
+                <FEEDBACK>{{ truefalse_question.true_feedback }}</FEEDBACK>
+              </ANSWER>
+              <ANSWER>
+                <ID>{{ truefalse_question.false_answer_id }}</ID>
+                <ANSWER_TEXT>False</ANSWER_TEXT>
+                <FRACTION>{{ truefalse_question.false_points }}</FRACTION>
+                <FEEDBACK>{{ truefalse_question.false_feedback }}</FEEDBACK>
+              </ANSWER>
+            </ANSWERS>
+          </QUESTION>
+            {% endif %}
+          {% endfor %}
+          {% for shortanswer_question in course.questions.shortanswer %}
+            {% if shortanswer_question.res_num == quiz.res_num %}
+          <QUESTION>
+            <ID>{{ shortanswer_question.id }}</ID>
+            <PARENT>0</PARENT>
+            <NAME>{{ shortanswer_question.name }}</NAME>
+            <QUESTIONTEXT>{{ shortanswer_question.text }}</QUESTIONTEXT>
+            <QUESTIONTEXTFORMAT>1</QUESTIONTEXTFORMAT>
+            <IMAGE>{{ shortanswer_question.image }}</IMAGE>
+            <GENERALFEEDBACK>{{ shortanswer_question.general_feedback }}</GENERALFEEDBACK>
+            <DEFAULTGRADE>1</DEFAULTGRADE>
+            <PENALTY>0</PENALTY>
+            <QTYPE>shortanswer</QTYPE>
+            <LENGTH>1</LENGTH>
+            <STAMP>{{ shortanswer_question.stamp }}</STAMP>
+            <VERSION>{{ shortanswer_question.stamp }}</VERSION>
+            <HIDDEN>0</HIDDEN>
+            <TIMECREATED>{{ course.timestamp }}</TIMECREATED>
+            <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+            <SHORTANSWER>
+                <ANSWERS>{{ shortanswer_question.answer_string }}</ANSWERS>
+                <USECASE>0</USECASE>
+            </SHORTANSWER>
+            <ANSWERS>
+              {% for answer in shortanswer_question.answers %}
+              <ANSWER>
+                <ID>{{ answer.id }}</ID>
+                <ANSWER_TEXT>{{ answer.answer_text }}</ANSWER_TEXT>
+                <FRACTION>{{ answer.points }}</FRACTION>
+                <FEEDBACK>{{ answer.feedback }}</FEEDBACK>
+              </ANSWER>
+              {% endfor %}
+            </ANSWERS>
+          </QUESTION>
+            {% endif %}
+          {% endfor %}
+          {% for multichoice_question in course.questions.multichoice %}
+            {% if multichoice_question.res_num == quiz.res_num %}
+          <QUESTION>
+            <ID>{{ multichoice_question.id }}</ID>
+            <PARENT>0</PARENT>
+            <NAME>{{ multichoice_question.name }}</NAME>
+            <QUESTIONTEXT>{{ multichoice_question.text }}</QUESTIONTEXT>
+            <QUESTIONTEXTFORMAT>1</QUESTIONTEXTFORMAT>
+            <IMAGE>{{ multichoice_question.image }}</IMAGE>
+            <GENERALFEEDBACK>{{ multichoice_question.general_feedback }}</GENERALFEEDBACK>
+            <DEFAULTGRADE>1</DEFAULTGRADE>
+            <PENALTY>0</PENALTY>
+            <QTYPE>multichoice</QTYPE>
+            <LENGTH>1</LENGTH>
+            <STAMP>{{ multichoice_question.stamp }}</STAMP>
+            <VERSION>{{ multichoice_question.stamp }}</VERSION>
+            <HIDDEN>0</HIDDEN>
+            <TIMECREATED>{{ course.timestamp }}</TIMECREATED>
+            <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+            <MULTICHOICE>
+                <LAYOUT>0</LAYOUT>
+                <ANSWERS>{{ multichoice_question.answer_string }}</ANSWERS>
+                <SINGLE>{{ multichoice_question.single_answer }}</SINGLE>
+                <SHUFFLEANSWERS>1</SHUFFLEANSWERS>
+                <CORRECTFEEDBACK>{{ multichoice_question.correct_feedback }}</CORRECTFEEDBACK>
+                <PARTIALLYCORRECTFEEDBACK>{{ multichoice_question.partially_correct_feedback }}</PARTIALLYCORRECTFEEDBACK>
+                <INCORRECTFEEDBACK>{{ multichoice_question.incorrect_feedback }}</INCORRECTFEEDBACK>
+                <ANSWERNUMBERING>abc</ANSWERNUMBERING>
+            </MULTICHOICE>
+            <ANSWERS>
+              {% for answer in multichoice_question.answers %}
+              <ANSWER>
+                <ID>{{ answer.id }}</ID>
+                <ANSWER_TEXT>{{ answer.answer_text }}</ANSWER_TEXT>
+                <FRACTION>{{ answer.points }}</FRACTION>
+                <FEEDBACK>{{ answer.feedback }}</FEEDBACK>
+              </ANSWER>
+              {% endfor %}
+            </ANSWERS>
+          </QUESTION>
+            {% endif %}
+          {% endfor %}
+          {% for matching_question in course.questions.matching %}
+            {% if matching_question.res_num == quiz.res_num %}
+          <QUESTION>
+            <ID>{{ matching_question.id }}</ID>
+            <PARENT>0</PARENT>
+            <NAME>{{ matching_question.name }}</NAME>
+            <QUESTIONTEXT>{{ matching_question.text }}</QUESTIONTEXT>
+            <QUESTIONTEXTFORMAT>1</QUESTIONTEXTFORMAT>
+            <IMAGE>{{ matching_question.image }}</IMAGE>
+            <GENERALFEEDBACK>{{ matching_question.general_feedback }}</GENERALFEEDBACK>
+            <DEFAULTGRADE>1</DEFAULTGRADE>
+            <PENALTY>0</PENALTY>
+            <QTYPE>match</QTYPE>
+            <LENGTH>1</LENGTH>
+            <STAMP>{{ matching_question.stamp }}</STAMP>
+            <VERSION>{{ matching_question.stamp }}</VERSION>
+            <HIDDEN>0</HIDDEN>
+            <TIMECREATED>{{ course.timestamp }}</TIMECREATED>
+            <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+            <MATCHOPTIONS>
+              <SHUFFLEANSWERS>1</SHUFFLEANSWERS>
+            </MATCHOPTIONS>
+            <MATCHS>
+              {% for answer in matching_question.answers %}
+              <MATCH>
+                <ID>{{ answer.id }}</ID>
+                <CODE>{{ answer.id }}</CODE>
+                <QUESTIONTEXT>{{ answer.question_text}}</QUESTIONTEXT>
+                <ANSWERTEXT>{{ answer.answer_text }}</ANSWERTEXT>
+              </MATCH>
+              {% endfor %}
+            </MATCHS>
+          </QUESTION>
+            {% endif %}
+          {% endfor %}
+        </QUESTIONS>
+      {% endif %}
+      </QUESTION_CATEGORY>
+      {% endfor %}
+    </QUESTION_CATEGORIES>
+    {% endif %}
+     <GRADEBOOK/>
+    <MODULES>
+      {% for quiz in course.quizzes %}
+      <MOD>
+        <ID>{{ quiz.id }}</ID>
+        <MODTYPE>quiz</MODTYPE>
+        <NAME>{{ quiz.name }}</NAME>
+        <INTRO>{{ quiz.intro }}</INTRO>
+        <TIMEOPEN>0</TIMEOPEN>
+        <TIMECLOSE>0</TIMECLOSE>
+        <OPTIONFLAGS>1</OPTIONFLAGS>
+        <PENALTYSCHEME>1</PENALTYSCHEME>
+        <ATTEMPTS_NUMBER>0</ATTEMPTS_NUMBER>
+        <ATTEMPTONLAST>0</ATTEMPTONLAST>
+        <GRADEMETHOD>1</GRADEMETHOD>
+        <DECIMALPOINTS>2</DECIMALPOINTS>
+        <REVIEW>4652015</REVIEW>
+        <QUESTIONSPERPAGE>0</QUESTIONSPERPAGE>
+        <SHUFFLEQUESTIONS>0</SHUFFLEQUESTIONS>
+        <SHUFFLEANSWERS>1</SHUFFLEANSWERS>
+        <QUESTIONS>{{ quiz.question_string }},0</QUESTIONS>
+        <SUMGRADES>1</SUMGRADES>
+        <GRADE>10</GRADE>
+        <TIMECREATED>{{ course.timestamp }}</TIMECREATED>
+        <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+        <TIMELIMIT>0</TIMELIMIT>
+        <PASSWORD></PASSWORD>
+        <SUBNET></SUBNET>
+        <POPUP>0</POPUP>
+        <DELAY1>0</DELAY1>
+        <DELAY2>0</DELAY2>
+        {% if quiz.questions %}
+        <QUESTION_INSTANCES>
+          {% for question in quiz.questions %}
+          <QUESTION_INSTANCE>
+            <ID>{{ question.id }}</ID>
+            <QUESTION>{{ question.id }}</QUESTION>
+            <GRADE>1</GRADE>
+          </QUESTION_INSTANCE>
+          {% endfor %}
+        </QUESTION_INSTANCES>
+        {% endif %}
+        <FEEDBACKS>
+          <FEEDBACK>
+            <ID>{{ quiz.feedback_id }}</ID>
+            <QUIZID>{{ quiz.id }}</QUIZID>
+            <FEEDBACKTEXT></FEEDBACKTEXT>
+            <MINGRADE>0</MINGRADE>
+            <MAXGRADE>11</MAXGRADE>
+          </FEEDBACK>
+        </FEEDBACKS>
+      </MOD>
+      {% endfor %}
+      {% for forum in course.forums %}
+      <MOD>
+        <ID>{{ forum.id }}</ID>
+        <MODTYPE>forum</MODTYPE>
+        <TYPE>general</TYPE>
+        <NAME>{{ forum.name }}</NAME>
+        <INTRO>{{ forum.introduction }}</INTRO>
+        <ASSESSED>0</ASSESSED>
+        <ASSESSTIMESTART>0</ASSESSTIMESTART>
+        <ASSESSTIMEFINISH>0</ASSESSTIMEFINISH>
+        <MAXBYTES>512000</MAXBYTES>
+        <SCALE>0</SCALE>
+        <FORCESUBSCRIBE>0</FORCESUBSCRIBE>
+        <TRACKINGTYPE>1</TRACKINGTYPE>
+        <RSSTYPE>0</RSSTYPE>
+        <RSSARTICLES>0</RSSARTICLES>
+        <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+        <WARNAFTER>0</WARNAFTER>
+        <BLOCKAFTER>0</BLOCKAFTER>
+        <BLOCKPERIOD>0</BLOCKPERIOD>
+      </MOD>
+      {% endfor %}
+      {% for label in course.labels %}
+      <MOD>
+        <ID>{{ label.id }}</ID>
+        <MODTYPE>label</MODTYPE>
+        <NAME>{{ label.name }}</NAME>
+        <CONTENT>{{ label.content }}</CONTENT>
+        <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+      </MOD>
+      {% endfor %}
+      {% for resource in course.resources %}
+      <MOD>
+        <ID>{{ resource.id }}</ID>
+        <MODTYPE>resource</MODTYPE>
+        <NAME>{{ resource.name }}</NAME>
+        <TYPE>{{ resource.res_type }}</TYPE>
+        <REFERENCE>{{ resource.reference }}</REFERENCE>
+        <SUMMARY>{{ resource.summary }}</SUMMARY>
+        <ALLTEXT>{{ resource.alltext }}</ALLTEXT>
+        <POPUP></POPUP>
+        <OPTIONS></OPTIONS>
+        <TIMEMODIFIED>{{ course.timestamp }}</TIMEMODIFIED>
+      </MOD>
+      {% endfor %}
+    </MODULES>
+    <FORMATDATA>
+    </FORMATDATA>
+  </COURSE>
+</MOODLE_BACKUP>
