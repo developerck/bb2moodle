@@ -471,9 +471,26 @@ class Test(Resource):
         self.intro = description + '<br /><br />' + instructions
 
         self.intro = '' if self.intro == '<br /><br />' else self.intro
-
+        while '@X@EmbeddedFile.requestUrlStub@X@bbcswebdav' in self.intro:
+            self.intro = self.handle_embedded_stubfile(self.intro)
         self.type = 'quiz'
 
+    def handle_embedded_stubfile(self, text):
+
+        if text.find('@X@EmbeddedFile.requestUrlStub@X@bbcswebdav') is -1:
+            return text
+        try:
+
+            before, rest = text.split('@X@EmbeddedFile.requestUrlStub@X@bbcswebdav', 1)
+            filename, after = rest.split('"', 1)
+
+            after = '"' + after
+
+            filename = utils.fix_filename(filename, self.res_num)
+            filename = filename.strip("/")
+            return before + '$@FILEPHP@$/' + filename + after
+        except Exception as e:
+            return text
 
 class Survey(Test):
     pass
