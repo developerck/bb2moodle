@@ -37,7 +37,7 @@ You can import it in moodle 1.9 and then upgrade moodle to 2.0 and export it to 
 
 Conversion Tool can be  [download from here](https://developerck.com/wp-content/uploads/2020/02/reteach.zip) or  [https://github.com/adamzap/reteach](https://github.com/adamzap/reteach)
 
-or update version is available at :  [https://github.com/developerck/bb2moodle](https://github.com/developerck/bb2moodle)  
+or update version is available at :  [https://github.com/developerck/bb2moodle](https://github.com/developerck/bb2moodle)  (just replace reteach by bb2moodle)
 Assuming that you are using linux environment.
 
 -   **Pre-requisite : python2 and pip is installed**
